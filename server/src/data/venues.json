@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Museu do Amanhã",
+    "description": "A science museum in Rio de Janeiro focused on sustainability and innovation. Features interactive exhibits and a waterfront location.",
+    "location": {
+      "lat": -22.8948,
+      "lng": -43.1801
+    },
+    "keywords": ["museum", "science", "family-friendly"]
+  },
+  {
+    "name": "Catedral Metropolitana de Florianopolis",
+    "description": "1908 Catholic church with twin towers, stained-glass windows, frescoes & statuary.",
+    "location": {
+      "lat": -27.59617730287141,
+      "lng": -48.54929773203126
+    },
+    "keywords": ["family-friendly", "historical", "church"]
+  },
+  {
+    "name": "Museu de Arte de São Paulo Assis Chateaubriand - MASP",
+    "description": "Elevated over a concrete platform used for concerts and a weekly crafts fair, the Museu de Arte de São Paulo (São Paulo Art Museum, abbreviated MASP) is itself a work of art; the building is an imposing Modernist box suspended under two bright red concrete supports. Featuring classical European names such as Gauguin, Goya and Gainsborough, the museum also holds one of the largest collections of Brazilian and other Latin American artists on the continent.",
+    "location": {
+      "lat": -23.56128613158677,
+      "lng": -46.65591408982313
+    },
+    "keywords": ["museum", "art", "historical"]
+  },
+  {
+    "name": "Parque Barigui",
+    "description": "Urban park with sports courts & lakeside trails for hiking/biking, plus a skating rink & BBQ grills.",
+    "location": {
+      "lat": -25.426565085687084,
+      "lng": -49.30727228792259
+    },
+    "keywords": ["family-friendly", "park", "nature"]
+  },
+  {
+    "name": "El Retiro Park",
+    "description": "Expansive, 19th-century park with boating lake & rose garden, plus numerous fountains & statues.",
+    "location": {
+      "lat": 40.41540500549786,
+      "lng": -3.683390601182366
+    },
+    "keywords": ["historical", "park", "nature"]
+  },
+  {
+    "name": "Barrio Lastarria",
+    "description": "This bohemian neighborhood has plenty of shops, bookshops, design shops, museums, cinemas, theater, restaurants and bars, hotels and tourist appartments, and more",
+    "location": {
+      "lat": -33.43770086206089,
+      "lng": -70.63960476587154
+    },
+    "keywords": ["neighborhood", "tourism", "historical"]
+  },
+  {
+    "name": "Forbidden City-The Palace Museum",
+    "description": "Consisting of more than 9,000 rooms and spread over 250 acres, this huge palace complex was built in the 15th century and later extensively renovated and restored during the Qing Dynasty in the 18th century",
+    "location": {
+      "lat": 39.916894287941844,
+      "lng": 116.39716209695368
+    },
+    "keywords": ["historical", "museum", "tourism"]
+  },
+  {
+    "name": "Nishiki Market Shopping District",
+    "description": "With a 400-year-old history, Nishiki Market is a downtown covered pedestrian arcade lined with 135 open-fronted shops selling seafood, produce, souvenirs, crafts, and Japanese snacks.",
+    "location": {
+      "lat": 35.00516638082532,
+      "lng": 135.76474445445825
+    },
+    "keywords": ["tourism", "shopping", "tourism"]
+  },
+  {
+    "name": "The Grand Palace",
+    "description": "Established in 1782, this ceremonial residence of the Kings of Thailand features several magnificent buildings like the Temple of the Emerald Buddha. Take your time to explore the imposing courtyards and visit the major landmarks within the Grand Palace complex.",
+    "location": {
+      "lat": 13.749980843127954,
+      "lng": 100.49150139449185
+    },
+    "keywords": ["tourism", "historical", "museum"]
+  },
+  {
+    "name": "La Boca",
+    "description": "Known as the birthplace of the tango, this one-time shipyard has a famous walkway, the Caminito, where tango dancers perform and artists exhibit their work.",
+    "location": {
+      "lat": -34.63426883716628,
+      "lng": -58.36654487805033
+    },
+    "keywords": ["shopping", "historical", "neighborhood"]
+  }
+]
