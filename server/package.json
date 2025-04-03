@@ -4,12 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./build/index.ts",
+    "start": "node ./build/server.ts",
     "build": "tsc -p .",
-    "dev": "nodemon ./src/index.ts"
+    "dev": "nodemon ./src/server.ts"
   },
   "dependencies": {
+    "@langchain/core": "^0.3.43",
+    "@langchain/openai": "^0.5.2",
     "@types/express": "^5.0.1",
+    "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "mongoose": "^8.13.1",
     "nodemon": "^3.1.9",
