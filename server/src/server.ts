@@ -1,4 +1,4 @@
-import { OpenAIEmbeddings } from "@langchain/openai";
+import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
 import express, { Express } from "express";
 import mongoose from "mongoose";
 import placesData from "./data/places.json";
@@ -85,46 +85,88 @@ app.post("/ingest", async (req, res) => {
 
 app.get("/search", async (req, res) => {
   try {
-    if (req.body) {
-      const { query, lat, lng } = req.body;
+    const { query } = req.body;
 
-      // 1- transformar query em embedding
-      const embeddedQuery = await embeddings.embedQuery(query);
-      console.log(embeddedQuery);
+    const embeddedQuery = await embeddings.embedQuery(query);
+    console.log(embeddedQuery);
 
-      // 2- retornar embeddings que tem a ver com a minha query usando vectorSearch, além disso estou filtrando a vectorSearch para retornar resultados atraves da localização geoespacial do mongodb. o nome desse processo todo é chamado de aggregation pipeline.
-      const similiarPlacesEmbedds = await Place.aggregate([
-        {
-          $vectorSearch: {
-            index: "vector_index",
-            path: "embedding",
-            queryVector: embeddedQuery,
-            numCandidates: 100,
-            limit: 5,
-            filter: {
-              "location.lat": { $gte: lat - 0.045, $lte: lat + 0.045 },
-              "location.lng": { $gte: lng - 0.045, $lte: lng + 0.045 },
-            },
+    const results = await Place.aggregate([
+      {
+        $vectorSearch: {
+          index: "vector_index",
+          path: "embedding",
+          queryVector: embeddedQuery,
+          numCandidates: 100,
+          limit: 5,
+          filter: {
+            "location.lat": { $gte: -23.8, $lte: -23.4 },
+            "location.lng": { $gte: -46.8, $lte: -46.2 },
           },
         },
-        {
-          $project: {
-            name: 1,
-            description: 1,
-            score: { $meta: "vectorSearchScore" },
-          },
+      },
+      {
+        $project: {
+          name: 1,
+          description: 1,
+          score: { $meta: "vectorSearchScore" },
         },
-      ]);
+      },
+    ]);
 
-      console.log(similiarPlacesEmbedds);
-      res.json({
-        message: "Processing complete",
-        results: similiarPlacesEmbedds,
-      });
-
-      // 3- retornar os resultados
-    } else {
+    interface PlaceResult {
+      name: string;
+      description: string;
     }
+
+    const formatPlaceContext = (places: PlaceResult[]): string => {
+      return places
+        .map(
+          (place) => `Place: ${place.name}\nDescription: ${place.description}`
+        )
+        .join("\n\n");
+    };
+
+    const context = formatPlaceContext(results);
+
+    const llm = new ChatOpenAI({
+      model: "gpt-4o",
+      temperature: 0.2,
+      maxTokens: 500,
+    });
+
+    const systemMessage = `  
+    You are a travel guide assistant. Answer the user's question using ONLY the context below.  
+    If unsure, say "I don’t have enough information."  
+
+    Context:  
+    ${context}  
+    `;
+
+    const userMessage = `  
+    Question: ${query}  
+    `;
+
+    const aiMsg = await llm.invoke([
+      {
+        role: "system",
+        content: systemMessage,
+      },
+      {
+        role: "user",
+        content: userMessage,
+      },
+    ]);
+
+    // console.log("AI response: ", aiMsg);
+
+    res.json({
+      answer: aiMsg.content,
+      sources: results.map((place) => ({
+        name: place.name,
+        description: place.description,
+        location: place.location,
+      })),
+    });
   } catch (err) {
     res.status(500);
     res.json({ message: "There was an error" });
