@@ -85,7 +85,46 @@ app.post("/ingest", async (req, res) => {
 
 app.get("/search", async (req, res) => {
   try {
-    const { query, lat, lng } = req.body;
+    if (req.body) {
+      const { query, lat, lng } = req.body;
+
+      // 1- transformar query em embedding
+      const embeddedQuery = await embeddings.embedQuery(query);
+      console.log(embeddedQuery);
+
+      // 2- retornar embeddings que tem a ver com a minha query usando vectorSearch, além disso estou filtrando a vectorSearch para retornar resultados atraves da localização geoespacial do mongodb. o nome desse processo todo é chamado de aggregation pipeline.
+      const similiarPlacesEmbedds = await Place.aggregate([
+        {
+          $vectorSearch: {
+            index: "vector_index",
+            path: "embedding",
+            queryVector: embeddedQuery,
+            numCandidates: 100,
+            limit: 5,
+            filter: {
+              "location.lat": { $gte: lat - 0.045, $lte: lat + 0.045 },
+              "location.lng": { $gte: lng - 0.045, $lte: lng + 0.045 },
+            },
+          },
+        },
+        {
+          $project: {
+            name: 1,
+            description: 1,
+            score: { $meta: "vectorSearchScore" },
+          },
+        },
+      ]);
+
+      console.log(similiarPlacesEmbedds);
+      res.json({
+        message: "Processing complete",
+        results: similiarPlacesEmbedds,
+      });
+
+      // 3- retornar os resultados
+    } else {
+    }
   } catch (err) {
     res.status(500);
     res.json({ message: "There was an error" });

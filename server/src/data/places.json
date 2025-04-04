@@ -88,5 +88,35 @@
       "lng": -58.36654487805033
     },
     "keywords": ["shopping", "historical", "neighborhood"]
+  },
+  {
+    "name": "Museu Oscar Niemeyer",
+    "description": "A futuristic art museum in Curitiba, known for its striking architecture and contemporary exhibits. Offers vegetarian-friendly café options.",
+    "location": { "lat": -25.4505, "lng": -49.2493 },
+    "keywords": ["museum", "art", "vegetarian", "architecture"]
+  },
+  {
+    "name": "Café Cultura",
+    "description": "A quiet café in São Paulo with high-speed Wi-Fi, perfect for remote work. Serves organic coffee and vegan pastries.",
+    "location": { "lat": -23.5505, "lng": -46.6333 },
+    "keywords": ["café", "remote work", "vegan", "quiet"]
+  },
+  {
+    "name": "Parque Ibirapuera",
+    "description": "A large urban park in São Paulo with museums, a planetarium, and cultural institutions. Great for jogging and picnics.",
+    "location": { "lat": -23.5874, "lng": -46.6571 },
+    "keywords": ["park", "nature", "family-friendly"]
+  },
+  {
+    "name": "Museu de Arte Moderna do Rio de Janeiro",
+    "description": "A modern art museum in Rio de Janeiro with a diverse collection of Brazilian and international art. Features a café with vegan options.",
+    "location": { "lat": -22.9083, "lng": -43.1964 },
+    "keywords": ["museum", "art", "vegan"]
+  },
+  {
+    "name": "Parque Nacional da Tijuca",
+    "description": "One of the largest urban rainforests in the world, offering hiking trails, waterfalls, and stunning views of Rio de Janeiro.",
+    "location": { "lat": -22.9256, "lng": -43.2237 },
+    "keywords": ["nature", "hiking", "family-friendly"]
   }
 ]
