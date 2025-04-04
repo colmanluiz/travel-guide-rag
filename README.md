@@ -134,3 +134,13 @@ curl -X GET "http://localhost:3001/search" \
 | Embeddings | text-embedding-3-small | Optimal accuracy/cost balance                 |
 | LLM        | GPT-4o                 | Best multimodal understanding                 |
 | Framework  | Express                | Lightweight & flexible                        |
+
+## Tasks
+
+### Frontend
+
+- [ ] Create initial setup
+
+### Next Features
+
+- [ ] Add MongoDB Atlas Geospatial Queries
